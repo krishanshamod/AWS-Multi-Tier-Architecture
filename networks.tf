@@ -10,8 +10,9 @@ resource "aws_vpc" "main" {
 
 // subnet for frontend resources
 resource "aws_subnet" "frontend" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.0.0/18"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.0.0/18"
+  availability_zone = "ap-south-1a"
 
   tags = {
     Name = "frontend"
@@ -20,8 +21,9 @@ resource "aws_subnet" "frontend" {
 
 // subnet for backend resources
 resource "aws_subnet" "backend" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.64.0/18"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.64.0/18"
+  availability_zone = "ap-south-1a"
 
   tags = {
     Name = "backend"
@@ -30,8 +32,9 @@ resource "aws_subnet" "backend" {
 
 // subnet for database resources
 resource "aws_subnet" "database" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.128.0/18"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.128.0/18"
+  availability_zone = "ap-south-1a"
 
   tags = {
     Name = "database"

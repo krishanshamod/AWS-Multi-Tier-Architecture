@@ -37,6 +37,7 @@ resource "aws_instance" "bastion_host" {
   ami                         = data.aws_ami.ubuntu-linux-2004.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.frontend.id
+  availability_zone           = "ap-south-1a"
   vpc_security_group_ids      = [aws_security_group.bastion-vm-sg.id]
   source_dest_check           = false
   key_name                    = aws_key_pair.bastion-key-pair.key_name
