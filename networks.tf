@@ -67,6 +67,25 @@ resource "aws_route_table_association" "public_subnet_association" {
   route_table_id = aws_route_table.public_route_table.id
 }
 
+// elastic ip for the nat gateway
+resource "aws_eip" "main_nat_gateway_eip" {
+  vpc = true
 
+  tags = {
+    Name = "main_nat_gateway_eip"
+  }
+}
+
+// nat gateway for the private subnets
+resource "aws_nat_gateway" "main_nat_gateway" {
+  allocation_id = aws_eip.main_nat_gateway_eip.id
+  subnet_id     = aws_subnet.frontend.id
+
+  tags = {
+    Name = "main_nat_gateway"
+  }
+
+  depends_on = [aws_internet_gateway.main_internet_gateway]
+}
 
 
