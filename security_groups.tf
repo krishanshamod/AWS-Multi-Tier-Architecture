@@ -12,6 +12,14 @@ resource "aws_security_group" "bastion-vm-sg" {
     description = "Allow incoming SSH connections"
   }
 
+  ingress {
+    from_port   = 8
+    to_port     = 0
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow ping from anywhere"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
